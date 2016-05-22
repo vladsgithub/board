@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Bulletin board</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+
+    <link rel="stylesheet" type="text/css" href="ui/css/app.css"/>
+
+    <script src="node_modules/angular/angular.js"></script>
+
+    <script src="ui/js/app.js"></script>
+    <script src="ui/js/controllers/mainController.js"></script>
+
+    <!--<base href="/">-->
+</head>
+<body ng-app="app" ng-cloak="">
+
+<header ng-include="'templates/header.html'"></header>
+
+<!--<nav>-->
+    <!--<a ui-sref="intro" ui-sref-active="active">Intro page</a>-->
+    <!--<a ui-sref="cats" ui-sref-active="active">Cats list</a>-->
+    <!--<a ui-sref="about" ui-sref-active="active">About cats</a>-->
+<!--</nav>-->
+
+<!--<main ui-view></main>-->
+
+<main ng-include="'templates/list.html'" ng-controller="mainCtrl"></main>
+
+<footer></footer>
+
+</body>
+</html>
