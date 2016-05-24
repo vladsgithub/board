@@ -33,6 +33,7 @@
 					template: '<h1>The page is not found</h1>'
 				});
 
+			
 			//$locationProvider.html5Mode(true);
 		});
 })();
