@@ -8,25 +8,30 @@
     <link rel="stylesheet" type="text/css" href="ui/css/app.css"/>
 
     <script src="node_modules/angular/angular.js"></script>
+	<script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
 
     <script src="ui/js/app.js"></script>
     <script src="ui/js/controllers/mainController.js"></script>
 
-    <!--<base href="/">-->
+	<!--<base href="/">-->
 </head>
 <body ng-app="app" ng-cloak="">
 
 <header ng-include="'templates/header.html'"></header>
 
-<!--<nav>-->
-    <!--<a ui-sref="intro" ui-sref-active="active">Intro page</a>-->
-    <!--<a ui-sref="cats" ui-sref-active="active">Cats list</a>-->
-    <!--<a ui-sref="about" ui-sref-active="active">About cats</a>-->
-<!--</nav>-->
+<nav>
+	<a ui-sref="home" ui-sref-active="active">Home</a>
+    <a ui-sref="adverts" ui-sref-active="active">List</a>
+    <!--<a ui-sref="advert({number: 0})" ui-sref-active="active">Advert 0</a>-->
+	<!--<a ui-sref="advert({number: 1})" ui-sref-active="active">Advert 1</a>-->
+	<!--<a ui-sref="advert({number: 2})" ui-sref-active="active">Advert 2</a>-->
+</nav>
 
-<!--<main ui-view></main>-->
+<main ui-view></main>
 
-<main ng-include="'templates/list.html'" ng-controller="mainCtrl"></main>
+<!--<main ng-include="'templates/list.html'" ng-controller="mainCtrl"></main>-->
+
+<!--<main ng-include="'templates/advert.html'" ng-controller="mainCtrl"></main>-->
 
 <footer></footer>
 

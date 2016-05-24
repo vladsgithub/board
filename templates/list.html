@@ -1,10 +1,12 @@
 <ul>
-    <li ng-repeat="advert in adverts">
+    <li ng-repeat="advert in adverts track by $index">
         <p>{{advert.type}}</p>
         <p>{{advert.title}}</p>
         <p>{{advert.desc}}</p>
         <div>
-            <img ng-src="{{advert.pict}}">
+			<a ui-sref="advert({number: $index})" ui-sref-active="active">
+				<img ng-src="{{advert.pict}}">
+			</a>
         </div>
     </li>
 </ul>
