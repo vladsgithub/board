@@ -18,33 +18,15 @@
 				.state('advert', {
 					url: '/adverts/:number',
 					templateUrl: 'templates/advert.html',
-					controller: function($scope, $stateParams, $http, advertService) {
-						$http({
-							method: 'POST',
-							url: 'json/adverts.json'
-						}).then(function successCallback(response) {
-							$scope.advert = response.data[$stateParams.number];
-						}, function errorCallback(response) {
-							console.error('ERROR:', response);
-						});
+					controller: function($scope, $stateParams, advertService) {
+						$scope.advert = advertService.getAdvert($stateParams.number);
 
-						//advertService.query(function(response) {
-						//	$scope.advert = response[$stateParams.number];
-						//});
-
-						//advertService.queryAdverts().query(function(response) {
-						//	console.log('response=', response);
-						//	//$scope.advert = response[$stateParams.number];
-						//});
-
-						//$http({
-						//	method: 'POST',
-						//	url: 'api.php'
-						//}).then(function successCallback(response) {
-						//	console.log('SUCCESS:', response);
-						//}, function errorCallback(response) {
-						//	console.error('ERROR:', response);
-						//});
+						$scope.submit = function() {
+							advertService.updateAdvert($scope.advert).$promise.then(function(data) {
+								console.log('data of updateAdvert: ', data);
+							});
+							console.log('$scope.advert=', $scope.advert);
+						};
 					}
 				})
 				.state('404', {

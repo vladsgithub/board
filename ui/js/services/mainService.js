@@ -18,13 +18,24 @@
 	//	}
 	//};
 
-	var advertService = function($resource, $timeout) {
-		//var Adverts = $resource('json/adverts.json');
-		var Adverts = $resource('/advertisements');
+	var advertService = function($resource) {
+		var Adverts = $resource('/advertisements/:id', {
+			id: "@id"
+		}, {
+			update: {
+				method: 'PUT'
+			}
+		});
 
 		return {
 			queryAdverts: function() {
-				return Adverts;
+				return Adverts.query();
+			},
+			getAdvert: function(num) {
+				return Adverts.get({id: num});
+			},
+			updateAdvert: function(item) {
+				return Adverts.update({id: item.id}, item);
 			}
 		};
 	};
