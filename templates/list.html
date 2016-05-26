@@ -1,10 +1,13 @@
 <ul>
     <li ng-repeat="advert in adverts track by $index">
+		<button type="button" ng-click="deleteItem(advert.id)" style="float: right">Delete</button>
+
+		<p>id: {{advert.id}}</p>
         <p>{{advert.type}}</p>
         <p>{{advert.title}}</p>
         <p>{{advert.desc}}</p>
         <div>
-			<a ui-sref="advert({number: $index})" ui-sref-active="active">
+			<a ui-sref="advert({number: advert.id})" ui-sref-active="active">
 				<img ng-src="{{advert.pict}}">
 			</a>
         </div>

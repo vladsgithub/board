@@ -1,23 +1,4 @@
 (function(module) {
-
-	//var catService = function($resource) {
-	//	var Cat = $resource('/cat/:id');
-	//
-	//	return {
-	//		cat: Cat,
-	//		queryCat: function() {
-	//			return Cat.query();
-	//		},
-	//		saveCat: function(cat) {
-	//			return Cat.save(cat);
-	//
-	//			// it is another way:
-	//			//newCat = new Cat(cat);
-	//			//newCat.$save();
-	//		}
-	//	}
-	//};
-
 	var advertService = function($resource) {
 		var Adverts = $resource('/advertisements/:id', {
 			id: "@id"
@@ -36,11 +17,15 @@
 			},
 			updateAdvert: function(item) {
 				return Adverts.update({id: item.id}, item);
+			},
+			addAdvert: function(item) {
+				return Adverts.save(item);
+			},
+			deleteAdvert: function(index) {
+				return Adverts.delete({id: index});
 			}
 		};
 	};
-
-	//module.factory("catService", catService);
 
 	module.factory("advertService", advertService);
 

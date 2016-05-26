@@ -18,14 +18,25 @@
 				.state('advert', {
 					url: '/adverts/:number',
 					templateUrl: 'templates/advert.html',
-					controller: function($scope, $stateParams, advertService) {
-						$scope.advert = advertService.getAdvert($stateParams.number);
+					controller: function($scope, $stateParams, $state, advertService) {
+						advertService.getAdvert($stateParams.number).$promise.then(function(response) {
+							$scope.advert = response;
+							if ($scope.advert.id === undefined) {
+								$state.go('404');
+							}
+						});
 
 						$scope.submit = function() {
-							advertService.updateAdvert($scope.advert).$promise.then(function(data) {
-								console.log('data of updateAdvert: ', data);
-							});
-							console.log('$scope.advert=', $scope.advert);
+							advertService.updateAdvert($scope.advert);
+						};
+					}
+				})
+				.state('newAdvert', {
+					url: '/new-advert',
+					templateUrl: 'templates/advert.html',
+					controller: function($scope, advertService) {
+						$scope.submit = function() {
+							$scope.advert = advertService.addAdvert($scope.advert);
 						};
 					}
 				})
