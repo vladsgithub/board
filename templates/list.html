@@ -1,5 +1,19 @@
+Start: <input ng-model="startNum"> End: <input ng-model="endNum">
+<p>
+    Filter: <input ng-model="search" ng-change="choosePage(0)">
+    <select ng-model="qtyOnPage"
+            ng-options="number for number in resultQty"
+            ng-change="choosePage(); updatePagination(results)"
+            ng-init="choosePage()">
+    </select>
+</p>
+<ul class="pagination">
+    <li ng-repeat="from in pageNumArray track by $index">
+        <button ng-click="choosePage($index)">{{$index + 1}}/{{from}}</button>
+    </li>
+</ul>
 <ul>
-    <li ng-repeat="advert in adverts">
+    <li ng-repeat="advert in adverts | filter:search as results track by $index" ng-if="$index >= startNum && $index < endNum">
 		<button type="button" ng-click="deleteItem(advert.id)" style="float: right">Delete</button>
 
 		<p>id: {{advert.id}}</p>
