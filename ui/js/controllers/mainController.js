@@ -1,8 +1,12 @@
 ﻿(function (module) {
 
     var mainCtrl = function ($scope, $http, advertService) {
-		$scope.adverts = advertService.queryAdverts();
-		$scope.resultQty = [10, 50, 100];
+		advertService.queryAdverts().$promise.then(function(response) {
+			$scope.adverts = response;
+			$scope.choosePage();
+			$scope.updatePagination($scope.results);
+		});
+		$scope.resultQty = [5, 10, 50, 100];
 		$scope.qtyOnPage = $scope.resultQty[0];
 
 		$scope.choosePage = function(pageNumber) {
