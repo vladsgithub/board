@@ -5,15 +5,9 @@
     <title>Bulletin board</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
 
-    <link rel="stylesheet" type="text/css" href="/ui/css/app.css"/>
+    <link rel="stylesheet" type="text/css" href="/assets/css/app.css"/>
 
-    <script src="/node_modules/angular/angular.js"></script>
-	<script src="/node_modules/angular-ui-router/release/angular-ui-router.js"></script>
-	<script src="/node_modules/angular-resource/angular-resource.js"></script>
-
-    <script src="/ui/js/app.js"></script>
-    <script src="/ui/js/controllers/mainController.js"></script>
-	<script src="/ui/js/services/mainService.js"></script>
+	<script src="/assets/js/production.min.js"></script>
 
 	<base href="/">
 </head>
@@ -23,16 +17,11 @@
 
 <nav>
 	<a ui-sref="home" ui-sref-active="active">Home</a>
-    <a ui-sref="adverts" ui-sref-active="active">List</a>
+    <a ui-sref="adverts" ui-sref-active="active">Adverts</a>
 	<a ui-sref="newAdvert" ui-sref-active="active">New advert</a>
 </nav>
 
-<p><a href="http://jsfiddle.net/BinaryMuse/vQUsS/">pagination</a></p>
-<p><a href="https://docs.angularjs.org/api/ng/filter/filter">filter</a></p>
-
 <main ui-view></main>
-
-<footer></footer>
 
 </body>
 </html>

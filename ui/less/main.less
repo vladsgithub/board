@@ -1,0 +1,111 @@
+.clearfix {
+  .clearfix();
+}
+input, select {
+  padding: 0 10px;
+  width: 100%;
+  height: 30px;
+  border: 0;
+  border-radius: 10px;
+  text-align: center;
+  font: normal normal normal 22px/30px "Indie Flower", "Comic Sans MS", cursive;
+}
+
+
+html {
+  height: 100%;
+  padding: 10px;
+  background: @main-background;
+}
+body {
+  margin-bottom: 10px;
+  min-height: 100%;
+  padding: 10px;
+  overflow-x: hidden;
+  border-radius: 30px;
+  background: @white;
+  font: normal normal normal 20px "Indie Flower", "Comic Sans MS", cursive;
+}
+header {
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  line-height: 36px;
+  border-radius: 20px;
+  background: @main-background;
+  color: @white;
+  font-size: 30px;
+
+  .logo {
+    float: left;
+    margin-right: 20px;
+    color: @white;
+    text-decoration: none;
+  }
+}
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+  a {
+    flex-grow: 1;
+    margin-left: 10px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background: @main-background;
+    color: @white;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
+main {
+  h2 {
+    font-size: 30px;
+  }
+  article {
+    padding: 10px;
+
+    p {
+      text-align: justify;
+    }
+  }
+  .filter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    background: @main-background;
+    color: @white;
+
+    label {
+      flex-grow: 1;
+
+      &:first-child {
+        padding-right: 10px;
+      }
+    }
+    p {
+      line-height: 16px;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+}
+
+
+
+
+
+
+@media screen and (max-width: @mobile - 1) {
+
+}

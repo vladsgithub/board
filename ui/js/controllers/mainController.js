@@ -1,6 +1,6 @@
 ﻿(function (module) {
 
-    var mainCtrl = function ($scope, $http, advertService) {
+    var mainCtrl = ['$scope', '$http', 'advertService', function ($scope, $http, advertService) {
 		advertService.queryAdverts().$promise.then(function(response) {
 			$scope.adverts = response;
 			$scope.choosePage();
@@ -32,7 +32,7 @@
 				$scope.adverts = advertService.queryAdverts();
 			});
 		}
-    };
+    }];
 
     module.controller("mainCtrl", mainCtrl);
 

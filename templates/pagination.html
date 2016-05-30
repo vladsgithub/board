@@ -1,0 +1,13 @@
+<ul class="pagination">
+	<li ng-class="{inactive : activeItem === 0}">
+		<a href class="dir" ng-click="selectPage(activeItem - 1)"><-</a>
+	</li>
+	<li ng-repeat="pageNum in pageNumArray track by $index">
+		<a href ng-click="selectPage($index)" ng-class="{active : activeItem === $index}">
+			{{$index + 1}}/{{pageNum}}
+		</a>
+	</li>
+	<li ng-class="{inactive : activeItem === pageNumArray.length - 1}">
+		<a href class="dir" ng-click="selectPage(activeItem + 1)">-></a>
+	</li>
+</ul>

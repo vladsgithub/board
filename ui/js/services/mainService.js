@@ -1,5 +1,5 @@
 (function(module) {
-	var advertService = function($resource) {
+	var advertService = ['$resource', function($resource) {
 		var Adverts = $resource('/advertisements/:id', {
 			id: "@id"
 		}, {
@@ -25,7 +25,7 @@
 				return Adverts.delete({id: index});
 			}
 		};
-	};
+	}];
 
 	module.factory("advertService", advertService);
 
