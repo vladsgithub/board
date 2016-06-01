@@ -36243,7 +36243,11 @@ angular.module('ngResource', ['ng']).
 					});
 
 					$scope.submit = function() {
-						advertService.updateAdvert($scope.advert);
+						var question = confirm("Do you want to add/change this advert? Are you sure?");
+
+						if (question) {
+							advertService.updateAdvert($scope.advert);
+						}
 					};
 				}]
 			})
@@ -36268,19 +36272,25 @@ angular.module('ngResource', ['ng']).
 	module.config(mainConfig);
 
 }(angular.module("app")));
+//Controllers
+
 (function (module) {
 
     var mainCtrl = ['$scope', '$http', 'advertService', function ($scope, $http, advertService) {
-		advertService.queryAdverts().$promise.then(function(response) {
-			$scope.adverts = response;
-			$scope.choosePage();
-			$scope.updatePagination($scope.results);
-		});
 		$scope.resultQty = [5, 10, 50, 100];
 		$scope.qtyOnPage = $scope.resultQty[0];
 
+		$scope.getAdverts = function() {
+			advertService.queryAdverts().$promise.then(function(response) {
+				$scope.adverts = response;
+				$scope.choosePage();
+				$scope.updatePagination($scope.results);
+			});
+		};
+
 		$scope.choosePage = function(pageNumber) {
 			pageNumber = pageNumber || 0;
+			$scope.activeItem = pageNumber;
 			$scope.startNum = $scope.qtyOnPage * pageNumber;
 			$scope.endNum = $scope.qtyOnPage * (1 + pageNumber);
 		};
@@ -36295,18 +36305,24 @@ angular.module('ngResource', ['ng']).
 			}
 		};
 
-		$scope.$watch('results', $scope.updatePagination);
-
 		$scope.deleteItem = function(index) {
-			advertService.deleteAdvert(index).$promise.then(function(response) {
-				$scope.adverts = advertService.queryAdverts();
-			});
-		}
+			var question = confirm("Do you want to delete this advert? Are you sure?");
+
+			if (question) {
+				advertService.deleteAdvert(index).$promise.then(function(response) {
+					$scope.getAdverts();
+				});
+			}
+		};
+
+		$scope.$watch('results', $scope.updatePagination);
     }];
 
     module.controller("mainCtrl", mainCtrl);
 
 }(angular.module("app")));
+//Directives
+
 (function (module) {
 
 	var pagination = function() {
@@ -36320,15 +36336,35 @@ angular.module('ngResource', ['ng']).
 					if (index < 0 || index >= scope.pageNumArray.length) return false;
 
 					scope.choosePage(index);
-					scope.activeItem = index;
 				};
 			}
 		}
 	};
 
+	var filter = function() {
+		return {
+			restrict: 'E',
+			templateUrl: 'templates/filter.html',
+			link: function(scope, element, attrs) {
+				scope.choosePage();
+			}
+		}
+	};
+
+	var item = function() {
+		return {
+			restrict: 'A',
+			templateUrl: 'templates/item.html'
+		}
+	};
+
 	module.directive('pagination', pagination);
+	module.directive('filter', filter);
+	module.directive('ngItem', item);
 
 }(angular.module('app')));
+//Services
+
 (function(module) {
 	var advertService = ['$resource', function($resource) {
 		var Adverts = $resource('/advertisements/:id', {

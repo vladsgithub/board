@@ -1,28 +1,41 @@
-<form ng-submit="submit()">
-	<p>id: {{advert.id}}</p>
-	<img ng-src="{{advert.pict}}" style="float: left;">
-	<input type="text" ng-model="advert.pict" />
+<form class="advert-form" ng-submit="submit()">
+	<div class="advert">
+		<div class="pict-block">
+			<div class="id">{{advert.id}}</div>
+			<div class="picture">
+				<img ng-src="{{advert.pict}}" title="{{advert.title}}">
+			</div>
+			<p>
+				<input type="text" ng-model="advert.pict" placeholder="URL address of picture"/>
+			</p>
+		</div>
 
-	<ul>
-		<li>
-			<label>type</label>
-			<select ng-model="advert.type">
-				<option>sale</option>
-				<option>purchase</option>
-				<option>exchange</option>
-			</select>
-		</li>
-		<li>
-			<label>title</label>
-			<input type="text" ng-model="advert.title" />
-		</li>
-		<li>
-			<label>desc</label>
-			<input type="text" ng-model="advert.desc" />
-		</li>
-	</ul>
-
-	<div>
-		<button type="submit">Submit</button>
+		<ul class="info-block">
+			<li>
+				<label>
+					<span>Type of advert:</span>
+					<select ng-model="advert.type">
+						<option>sale</option>
+						<option>purchase</option>
+						<option>exchange</option>
+					</select>
+				</label>
+			</li>
+			<li>
+				<label>
+					<span>Title of advert:</span>
+					<input type="text" ng-model="advert.title"/>
+				</label>
+			</li>
+			<li>
+				<label class="description">
+					<span>Description of advert:</span>
+					<textarea ng-model="advert.desc"></textarea>
+				</label>
+			</li>
+		</ul>
 	</div>
+	<p>
+		<button class="submit" type="submit">Submit</button>
+	</p>
 </form>

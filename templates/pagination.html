@@ -1,13 +1,19 @@
-<ul class="pagination">
-	<li ng-class="{inactive : activeItem === 0}">
-		<a href class="dir" ng-click="selectPage(activeItem - 1)"><-</a>
-	</li>
-	<li ng-repeat="pageNum in pageNumArray track by $index">
-		<a href ng-click="selectPage($index)" ng-class="{active : activeItem === $index}">
-			{{$index + 1}}/{{pageNum}}
-		</a>
-	</li>
-	<li ng-class="{inactive : activeItem === pageNumArray.length - 1}">
-		<a href class="dir" ng-click="selectPage(activeItem + 1)">-></a>
-	</li>
-</ul>
+<div class="flex-block side" ng-class="{inactive : activeItem === 0}">
+	<a href class="dir" ng-click="selectPage(activeItem - 1)" title="Previous page">
+		<i class="icon-arrow-left"></i>
+	</a>
+</div>
+<div class="flex-block">
+	<ul class="flex-cont pagination">
+		<li class="flex-block" ng-repeat="pageNum in pageNumArray track by $index" ng-class="{active : activeItem === $index}">
+			<a href ng-click="selectPage($index)" title="Page #{{$index + 1}}">
+				{{$index + 1}}
+			</a>
+		</li>
+	</ul>
+</div>
+<div class="flex-block side" ng-class="{inactive : activeItem === pageNumArray.length - 1}">
+	<a href class="dir" ng-click="selectPage(activeItem + 1)" title="Next page">
+		<i class="icon-arrow-right"></i>
+	</a>
+</div>

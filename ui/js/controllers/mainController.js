@@ -1,16 +1,22 @@
-﻿(function (module) {
+﻿//Controllers
+
+(function (module) {
 
     var mainCtrl = ['$scope', '$http', 'advertService', function ($scope, $http, advertService) {
-		advertService.queryAdverts().$promise.then(function(response) {
-			$scope.adverts = response;
-			$scope.choosePage();
-			$scope.updatePagination($scope.results);
-		});
 		$scope.resultQty = [5, 10, 50, 100];
 		$scope.qtyOnPage = $scope.resultQty[0];
 
+		$scope.getAdverts = function() {
+			advertService.queryAdverts().$promise.then(function(response) {
+				$scope.adverts = response;
+				$scope.choosePage();
+				$scope.updatePagination($scope.results);
+			});
+		};
+
 		$scope.choosePage = function(pageNumber) {
 			pageNumber = pageNumber || 0;
+			$scope.activeItem = pageNumber;
 			$scope.startNum = $scope.qtyOnPage * pageNumber;
 			$scope.endNum = $scope.qtyOnPage * (1 + pageNumber);
 		};
@@ -25,13 +31,17 @@
 			}
 		};
 
-		$scope.$watch('results', $scope.updatePagination);
-
 		$scope.deleteItem = function(index) {
-			advertService.deleteAdvert(index).$promise.then(function(response) {
-				$scope.adverts = advertService.queryAdverts();
-			});
-		}
+			var question = confirm("Do you want to delete this advert? Are you sure?");
+
+			if (question) {
+				advertService.deleteAdvert(index).$promise.then(function(response) {
+					$scope.getAdverts();
+				});
+			}
+		};
+
+		$scope.$watch('results', $scope.updatePagination);
     }];
 
     module.controller("mainCtrl", mainCtrl);

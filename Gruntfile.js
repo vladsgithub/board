@@ -48,6 +48,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	//grunt.loadNpmTasks('grunt-contrib-imagemin');
 
-	grunt.registerTask('default', ['watch', 'less', 'concat', 'uglify']); // 'watch',
+	grunt.registerTask('default', ['watch', 'less', 'concat']); // 'watch', 'uglify'
 
 };

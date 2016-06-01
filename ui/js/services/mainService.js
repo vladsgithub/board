@@ -1,3 +1,5 @@
+//Services
+
 (function(module) {
 	var advertService = ['$resource', function($resource) {
 		var Adverts = $resource('/advertisements/:id', {

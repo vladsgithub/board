@@ -1131,23 +1131,36 @@ textarea {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+/*--------------------- MAIN STYLES ---------------------*/
 .clearfix:after {
   content: '';
   display: block;
   clear: both;
 }
 input,
-select {
+select,
+textarea,
+button {
   padding: 0 10px;
   width: 100%;
-  height: 30px;
+  height: 36px;
   border: 0;
   border-radius: 10px;
   text-align: center;
   font: normal normal normal 22px/30px "Indie Flower", "Comic Sans MS", cursive;
 }
+.flex-cont {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+.flex-block {
+  flex-grow: 1;
+}
 html {
   height: 100%;
+  min-width: 320px;
   padding: 10px;
   background: #649DFF;
 }
@@ -1176,12 +1189,10 @@ header .logo {
   text-decoration: none;
 }
 nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   margin-bottom: 10px;
 }
 nav a {
+  display: block;
   flex-grow: 1;
   margin-left: 10px;
   padding: 10px 20px;
@@ -1195,34 +1206,351 @@ nav a {
 nav a:first-child {
   margin-left: 0;
 }
-main h2 {
+nav i {
+  position: relative;
+  margin: 0 10px;
+  top: 2px;
+  font-size: 24px;
+}
+h2 {
   font-size: 30px;
 }
-main article {
+article {
   padding: 10px;
 }
-main article p {
+article p {
   text-align: justify;
 }
-main .filter {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+filter {
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 20px;
   background: #649DFF;
   color: #fff;
 }
-main .filter label {
+filter label {
+  display: block;
   flex-grow: 1;
 }
-main .filter label:first-child {
+filter label:first-child {
   padding-right: 10px;
 }
-main .filter p {
+filter p {
   line-height: 16px;
   font-size: 16px;
   font-weight: bold;
   text-align: center;
+}
+filter select {
+  min-width: 70px;
+}
+.pagination .flex-block,
+pagination .side {
+  margin-bottom: 5px;
+  margin-left: 5px;
+  border-radius: 20px;
+  border: 5px solid #649DFF;
+  background: #649DFF;
+  text-align: center;
+  font-weight: bold;
+}
+pagination {
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+pagination a {
+  display: inline-block;
+  padding: 0px 15px;
+  line-height: 34px;
+  color: white;
+  text-decoration: none;
+  font-size: 30px;
+}
+pagination i {
+  position: relative;
+  top: 2px;
+}
+pagination .side {
+  max-width: 60px;
+  border: 0;
+}
+pagination .side:first-child {
+  margin-left: 0;
+}
+pagination .side a {
+  padding: 0;
+  width: 60px;
+  line-height: 44px;
+}
+pagination .inactive {
+  background: #b2ceff;
+}
+pagination .inactive a {
+  cursor: default;
+}
+.pagination {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.pagination .flex-block {
+  flex-grow: 0;
+}
+.pagination .active {
+  background: #fff;
+}
+.pagination .active a {
+  color: #649DFF;
+}
+.list-block {
+  flex-direction: column;
+  margin: 0 -5px -10px;
+}
+.ad-block .ad {
+  position: relative;
+  margin: 0 5px 10px;
+  height: 300px;
+  border-radius: 20px;
+  background: #649DFF;
+  font-weight: bold;
+}
+.ad-block .btn-del {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 30px;
+  text-decoration: none;
+  color: #fff;
+  z-index: 2;
+}
+.ad-block .info {
+  position: relative;
+  line-height: 44px;
+  font-size: 22px;
+  color: #fff;
+  z-index: 1;
+}
+.ad-block .info dt {
+  float: left;
+  padding: 0 10px;
+}
+.ad-block .info dd {
+  padding: 0 44px 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ad-block .pict-block {
+  position: relative;
+  margin-top: -44px;
+  padding: 44px 10px 10px;
+  height: 100%;
+}
+.ad-block .pict-block p {
+  position: absolute;
+  right: 20px;
+  font-size: 30px;
+}
+.ad-block .picture {
+  display: block;
+  height: 100%;
+  line-height: 246px;
+  border-radius: 15px;
+  background: #fff;
+  text-align: center;
+  font-size: 0;
+}
+.ad-block .picture img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 15px;
+  vertical-align: middle;
+}
+.advert {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+.advert input,
+.advert select,
+.advert textarea {
+  border: 1px solid #649DFF;
+}
+.advert .pict-block {
+  position: relative;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.advert .pict-block img {
+  max-width: 100%;
+  max-height: 300px;
+}
+.advert .pict-block .id {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.advert .info-block li {
+  margin-bottom: 10px;
+}
+.advert .info-block label {
+  font-weight: bold;
+}
+.advert .info-block textarea {
+  min-height: 100px;
+}
+.advert-form .submit {
+  background: #649DFF;
+  color: #fff;
+  cursor: pointer;
+}
+@media screen and (max-width: 479px) {
+  .no-mobile {
+    display: none;
+  }
+}
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  nav i {
+    display: none !important;
+  }
+  .list-block {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .ad-block {
+    width: 50%;
+    flex-grow: 0;
+  }
+  .advert label {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    line-height: 36px;
+  }
+  .advert label span {
+    white-space: nowrap;
+    padding-right: 10px;
+  }
+  .advert label input,
+  .advert label select {
+    flex-grow: 1;
+    width: auto;
+  }
+  .advert .description {
+    display: block;
+  }
+  .advert-form .submit {
+    display: block;
+    margin: auto;
+    width: 50%;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  html,
+  body {
+    padding: 20px;
+  }
+  header,
+  nav {
+    margin-bottom: 20px;
+  }
+  .list-block {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .ad-block {
+    width: 33.333%;
+    flex-grow: 0;
+  }
+  .advert {
+    flex-direction: row;
+  }
+  .advert .pict-block {
+    flex-grow: 1;
+    margin-right: 20px;
+  }
+  .advert .info-block {
+    flex-grow: 1;
+  }
+  .advert .info-block textarea {
+    min-height: 176px;
+  }
+  .advert .picture {
+    font-size: 0;
+    margin-bottom: 20px;
+  }
+  .advert-form .submit {
+    display: block;
+    margin: auto;
+    width: 40%;
+  }
+}
+@media screen and (min-width: 1200px) {
+  html {
+    padding: 20px;
+  }
+  body {
+    padding: 20px 100px;
+  }
+  header,
+  nav {
+    margin-bottom: 30px;
+  }
+  .list-block {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .ad-block {
+    width: 25%;
+    flex-grow: 0;
+  }
+  .advert {
+    flex-direction: row;
+  }
+  .advert label {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    line-height: 36px;
+  }
+  .advert label span {
+    white-space: nowrap;
+    padding-right: 10px;
+  }
+  .advert label input,
+  .advert label select {
+    flex-grow: 1;
+    width: auto;
+  }
+  .advert .pict-block {
+    flex-grow: 1;
+    margin-right: 20px;
+  }
+  .advert .info-block {
+    flex-grow: 1;
+  }
+  .advert .info-block textarea {
+    min-height: 228px;
+  }
+  .advert .picture {
+    font-size: 0;
+    margin-bottom: 20px;
+  }
+  .advert .description {
+    display: block;
+  }
+  .advert-form .submit {
+    display: block;
+    margin: auto;
+    width: 30%;
+  }
 }

@@ -26,7 +26,11 @@
 					});
 
 					$scope.submit = function() {
-						advertService.updateAdvert($scope.advert);
+						var question = confirm("Do you want to add/change this advert? Are you sure?");
+
+						if (question) {
+							advertService.updateAdvert($scope.advert);
+						}
 					};
 				}]
 			})

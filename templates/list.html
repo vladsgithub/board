@@ -1,30 +1,8 @@
-<aside class="filter">
-	<label>
-		<p>Search in titles of adverts:</p>
-		<input ng-model="search.title" ng-change="choosePage(0)">
-	</label>
-	<label>
-		<p>Show on the page:</p>
-		<select ng-model="qtyOnPage"
-				ng-options="number for number in resultQty"
-				ng-change="choosePage(); updatePagination(results)"
-				ng-init="choosePage()">
-		</select>
-	</label>
-</aside>
-<pagination></pagination>
-<ul>
-    <li ng-repeat="advert in adverts | filter:search as results track by $index" ng-if="$index >= startNum && $index < endNum">
-		<button type="button" ng-click="deleteItem(advert.id)" style="float: right">Delete</button>
+<filter class="flex-cont"></filter>
+<pagination class="flex-cont"></pagination>
 
-		<p>id: {{advert.id}}</p>
-        <p>{{advert.type}}</p>
-        <p>{{advert.title}}</p>
-        <p>{{advert.desc}}</p>
-        <div>
-			<a ui-sref="advert({number: advert.id})" ui-sref-active="active">
-				<img ng-src="{{advert.pict}}">
-			</a>
-        </div>
+<ul class="flex-cont list-block" ng-init="getAdverts()">
+    <li class="flex-block ad-block" ng-item ng-repeat="advert in adverts | filter:search as results track by $index"
+		ng-if="$index >= startNum && $index < endNum">
     </li>
 </ul>
