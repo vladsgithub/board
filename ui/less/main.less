@@ -7,11 +7,15 @@
 input, select, textarea, button {
   padding: 0 10px;
   width: 100%;
+  min-width: 0;
   height: 36px;
   border: 0;
   border-radius: 10px;
   text-align: center;
   font: normal normal normal 22px/30px "Indie Flower", "Comic Sans MS", cursive;
+}
+h1 {
+  font-size: 30px;
 }
 
 .flex-cont {
@@ -59,6 +63,15 @@ header {
 nav {
   margin-bottom: 10px;
 
+  &:before {
+    position: absolute;
+    content: '';
+    height: 30px;
+    left: 20px;
+    right: 20px;
+    margin: 10px 0;
+    background: tint(@main, 60%);
+  }
   a {
     display: block;
     flex-grow: 1;
@@ -70,6 +83,7 @@ nav {
     text-decoration: none;
     text-align: center;
     font-weight: bold;
+    z-index: 1;
 
     &:first-child {
       margin-left: 0;
@@ -81,10 +95,6 @@ nav {
     top: 2px;
     font-size: 24px;
   }
-}
-
-h2 {
-  font-size: 30px;
 }
 
 article {
@@ -279,6 +289,17 @@ pagination {
       right: 20px;
     }
   }
+  .picture {
+    margin-bottom: 10px;
+    line-height: 200px;
+    border: 1px solid @main;
+    border-radius: 15px;
+
+    img {
+      vertical-align: middle;
+      border-radius: 15px;
+    }
+  }
   .info-block {
     li {
       margin-bottom: 10px;
@@ -315,13 +336,16 @@ pagination {
   .list-block {
     .flex-container(row, wrap, flex-start);
   }
-
   .ad-block {
     width: 50%;
     flex-grow: 0;
   }
-
+  .advert-form {
+    padding: 0 10%;
+  }
   .advert {
+    padding: 10px 0;
+
     label {
       .flex-container(row, nowrap, flex-start);
       line-height: 36px;
@@ -363,23 +387,32 @@ pagination {
     width: 33.333%;
     flex-grow: 0;
   }
+  .advert-form {
+    padding: 0 10%;
+  }
   .advert {
     flex-direction: row;
 
     .pict-block {
       flex-grow: 1;
       margin-right: 20px;
+
+      .id {
+        left: 20px;
+        right: inherit;
+      }
     }
     .info-block {
       flex-grow: 1;
 
       textarea {
-        min-height: 176px;
+        min-height: 180px;
       }
     }
     .picture {
       font-size: 0;
       margin-bottom: 20px;
+      line-height: 300px;
     }
   }
   .advert-form {
@@ -401,6 +434,11 @@ pagination {
   header, nav {
     margin-bottom: 30px;
   }
+  nav {
+    a {
+      margin-left: 40px;
+    }
+  }
   .list-block {
     .flex-container(row, wrap, flex-start);
   }
@@ -409,8 +447,12 @@ pagination {
     width: 25%;
     flex-grow: 0;
   }
+  .advert-form {
+    padding: 0 10%;
+  }
   .advert {
     flex-direction: row;
+    padding: 10px 0;
 
     label {
       .flex-container(row, nowrap, flex-start);
@@ -428,17 +470,23 @@ pagination {
     .pict-block {
       flex-grow: 1;
       margin-right: 20px;
+
+      .id {
+        left: 20px;
+        right: inherit;
+      }
     }
     .info-block {
       flex-grow: 1;
 
       textarea {
-        min-height: 228px;
+        min-height: 230px;
       }
     }
     .picture {
       font-size: 0;
       margin-bottom: 20px;
+      line-height: 300px;
     }
     .description {
       display: block;
