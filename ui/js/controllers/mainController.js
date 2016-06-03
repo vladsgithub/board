@@ -2,7 +2,7 @@
 
 (function (module) {
 
-    var mainCtrl = ['$scope', '$http', 'advertService', function ($scope, $http, advertService) {
+    var mainCtrl = ['$rootScope', '$scope', '$http', 'advertService', function ($rootScope, $scope, $http, advertService) {
 		$scope.resultQty = [5, 10, 50, 100];
 		$scope.qtyOnPage = $scope.resultQty[0];
 

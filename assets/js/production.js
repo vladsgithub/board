@@ -36235,23 +36235,36 @@ angular.module('ngResource', ['ng']).
 				.state('advert', {
 					url: '/adverts/:number',
 					templateUrl: 'templates/advert.html',
-					controller: ['$scope', '$stateParams', '$state', 'advertService', function ($scope, $stateParams, $state, advertService) {
-						advertService.getAdvert($stateParams.number).$promise.then(function (response) {
-							$scope.advert = response;
-							$scope.title = $scope.advert.title;
+					controller: ['$rootScope', '$scope', '$stateParams', '$state', 'advertService',
+						function ($rootScope, $scope, $stateParams, $state, advertService) {
+							$scope.btnName = 'Change';
 
-							if ($scope.advert.id === undefined) {
-								$state.go('404');
-							}
-						});
+							advertService.getAdvert($stateParams.number).$promise.then(function (response) {
+								$scope.advert = response;
+								$scope.title = $scope.advert.title;
 
-						$scope.submit = function () {
-							var question = confirm("Do you want to change this advert? Are you sure?");
+								if ($scope.advert.id === undefined) {
+									$state.go('404');
+								}
+							});
 
-							if (question) {
-								advertService.updateAdvert($scope.advert);
-							}
-						};
+							$scope.submit = function () {
+								var question = confirm("Do you want to change this advert? Are you sure?");
+
+								if (question) {
+									advertService.updateAdvert($scope.advert);
+								}
+							};
+
+							$scope.deleteItem = function(index) {
+								var question = confirm("Do you want to delete this advert? Are you sure?");
+
+								if (question) {
+									advertService.deleteAdvert(index).$promise.then(function(response) {
+										$state.go('adverts');
+									});
+								}
+							};
 					}]
 				})
 				.state('newAdvert', {
@@ -36259,8 +36272,10 @@ angular.module('ngResource', ['ng']).
 					templateUrl: 'templates/advert.html',
 					controller: ['$scope', '$state', 'advertService', function ($scope, $state, advertService) {
 						$scope.title = 'New advert';
+						$scope.btnName = 'Add';
 
 						$scope.submit = function () {
+							console.log($scope.advertForm);
 							var question = confirm("Do you want to add this advert? Are you sure?");
 
 							if (question) {
@@ -36288,7 +36303,7 @@ angular.module('ngResource', ['ng']).
 
 (function (module) {
 
-    var mainCtrl = ['$scope', '$http', 'advertService', function ($scope, $http, advertService) {
+    var mainCtrl = ['$rootScope', '$scope', '$http', 'advertService', function ($rootScope, $scope, $http, advertService) {
 		$scope.resultQty = [5, 10, 50, 100];
 		$scope.qtyOnPage = $scope.resultQty[0];
 

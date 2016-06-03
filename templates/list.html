@@ -2,7 +2,8 @@
 <pagination class="flex-cont"></pagination>
 
 <ul class="flex-cont list-block" ng-init="getAdverts()">
-    <li class="flex-block ad-block" ng-item ng-repeat="advert in adverts | filter:search as results track by $index"
+    <li class="flex-block ad-block" ng-item
+		ng-repeat="advert in adverts | filter:search as results track by $index"
 		ng-if="$index >= startNum && $index < endNum">
     </li>
 </ul>

@@ -1,4 +1,4 @@
-<form class="advert-form" ng-submit="submit()">
+<form name="advertForm" class="advert-form" ng-submit="submit()">
 	<h1>{{title}}</h1>
 	<div class="advert">
 		<div class="pict-block">
@@ -15,7 +15,7 @@
 			<li>
 				<label>
 					<span>Type of advert:</span>
-					<select ng-model="advert.type">
+					<select ng-model="advert.type" required>
 						<option>sale</option>
 						<option>purchase</option>
 						<option>exchange</option>
@@ -25,7 +25,7 @@
 			<li>
 				<label>
 					<span>Title of advert:</span>
-					<input type="text" ng-model="advert.title"/>
+					<input type="text" ng-model="advert.title" required/>
 				</label>
 			</li>
 			<li>
@@ -36,7 +36,8 @@
 			</li>
 		</ul>
 	</div>
-	<p>
-		<button class="submit" type="submit">Submit</button>
+	<p class="buttons">
+		<button class="submit" type="submit">{{btnName}}</button>
+		<button type="button" ng-if="advert.id" ng-click="deleteItem(advert.id)">Delete</button>
 	</p>
 </form>

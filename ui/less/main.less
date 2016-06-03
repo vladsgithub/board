@@ -1,8 +1,6 @@
-/*--------------------- MAIN STYLES ---------------------*/
 
-.clearfix {
-  .clearfix();
-}
+/*--------------------- ----------- ---------------------*/
+/*--------------------- MAIN STYLES ---------------------*/
 
 input, select, textarea, button {
   padding: 0 10px;
@@ -17,13 +15,15 @@ input, select, textarea, button {
 h1 {
   font-size: 30px;
 }
-
+.old-ie {
+  display: none;
+}
 .flex-cont {
   .flex-container(row, nowrap, space-between);
 }
 
 .flex-block {
-  flex-grow: 1;
+  .flex-grow(1);
 }
 
 html {
@@ -63,18 +63,9 @@ header {
 nav {
   margin-bottom: 10px;
 
-  &:before {
-    position: absolute;
-    content: '';
-    height: 30px;
-    left: 20px;
-    right: 20px;
-    margin: 10px 0;
-    background: tint(@main, 60%);
-  }
   a {
     display: block;
-    flex-grow: 1;
+    .flex-grow(1);
     margin-left: 10px;
     padding: 10px 20px;
     border-radius: 20px;
@@ -114,7 +105,7 @@ filter {
 
   label {
     display: block;
-    flex-grow: 1;
+    .flex-grow(1);
 
     &:first-child {
       padding-right: 10px;
@@ -143,7 +134,7 @@ pagination .side {
 }
 
 pagination {
-  align-items: flex-start;
+  .align-items(flex-start);
   margin-bottom: 10px;
 
   a {
@@ -181,11 +172,11 @@ pagination {
 }
 
 .pagination {
-  flex-wrap: wrap;
-  justify-content: center;
+  .flex-wrap(wrap);
+  .justify-content(center);
 
   .flex-block {
-    flex-grow: 0;
+    .flex-grow(0);
   }
   .active {
     background: @white;
@@ -197,7 +188,7 @@ pagination {
 }
 
 .list-block {
-  flex-direction: column;
+  .flex-direction(column);
   margin: 0 -5px -10px;
 }
 
@@ -220,6 +211,7 @@ pagination {
     z-index: 2;
   }
   .info {
+    .flex-display();
     position: relative;
     line-height: 44px;
     font-size: 22px;
@@ -227,7 +219,6 @@ pagination {
     z-index: 1;
 
     dt {
-      float: left;
       padding: 0 10px;
     }
     dd {
@@ -313,20 +304,21 @@ pagination {
   }
 }
 .advert-form {
-  .submit {
+  button {
+    margin-bottom: 30px;
     background: @main;
     color: @white;
     cursor: pointer;
   }
 }
 
-@media screen and (max-width: (@mobile - 1)) {
+@media @mobile {
   .no-mobile {
     display: none;
   }
 }
 
-@media screen and (min-width: @mobile) and (max-width: (@tablet - 1)) {
+@media @tablet {
   nav {
     i {
       display: none !important;
@@ -338,7 +330,7 @@ pagination {
   }
   .ad-block {
     width: 50%;
-    flex-grow: 0;
+    .flex-grow(0);
   }
   .advert-form {
     padding: 0 10%;
@@ -355,7 +347,7 @@ pagination {
         padding-right: 10px;
       }
       input, select {
-        flex-grow: 1;
+        .flex-grow(1);
         width: auto;
       }
     }
@@ -364,17 +356,23 @@ pagination {
     }
   }
   .advert-form {
-    .submit {
+    button {
       display: block;
       margin: auto;
-      width: 50%;
+      width: 40%;
+    }
+    .buttons {
+      .flex-display();
     }
   }
 }
 
-@media screen and (min-width: @tablet) and (max-width: (@desktop - 1)) {
+@media @desktop {
   html, body {
     padding: 20px;
+  }
+  body {
+    margin-bottom: 20px;
   }
   header, nav {
     margin-bottom: 20px;
@@ -385,16 +383,16 @@ pagination {
 
   .ad-block {
     width: 33.333%;
-    flex-grow: 0;
+    .flex-grow(0);
   }
   .advert-form {
     padding: 0 10%;
   }
   .advert {
-    flex-direction: row;
+    .flex-direction(row);
 
     .pict-block {
-      flex-grow: 1;
+      .flex-grow(1);
       margin-right: 20px;
 
       .id {
@@ -403,7 +401,7 @@ pagination {
       }
     }
     .info-block {
-      flex-grow: 1;
+      .flex-grow(1);
 
       textarea {
         min-height: 180px;
@@ -416,19 +414,23 @@ pagination {
     }
   }
   .advert-form {
-    .submit {
+    button {
       display: block;
-      margin: auto;
       width: 40%;
+    }
+    .buttons {
+      .flex-display();
+      .justify-content(space-around);
     }
   }
 }
 
-@media screen and (min-width: @desktop) {
+@media @desktop-xl {
   html {
     padding: 20px;
   }
   body {
+    margin-bottom: 20px;
     padding: 20px 100px;
   }
   header, nav {
@@ -445,13 +447,13 @@ pagination {
 
   .ad-block {
     width: 25%;
-    flex-grow: 0;
+    .flex-grow(0);
   }
   .advert-form {
     padding: 0 10%;
   }
   .advert {
-    flex-direction: row;
+    .flex-direction(row);
     padding: 10px 0;
 
     label {
@@ -463,12 +465,12 @@ pagination {
         padding-right: 10px;
       }
       input, select {
-        flex-grow: 1;
+        .flex-grow(1);
         width: auto;
       }
     }
     .pict-block {
-      flex-grow: 1;
+      .flex-grow(1);
       margin-right: 20px;
 
       .id {
@@ -477,7 +479,7 @@ pagination {
       }
     }
     .info-block {
-      flex-grow: 1;
+      .flex-grow(1);
 
       textarea {
         min-height: 230px;
@@ -493,10 +495,13 @@ pagination {
     }
   }
   .advert-form {
-    .submit {
+    button {
       display: block;
-      margin: auto;
       width: 30%;
+    }
+    .buttons {
+      .flex-display();
+      .justify-content(space-around);
     }
   }
 }
