@@ -12,19 +12,19 @@
 
 		return {
 			queryAdverts: function() {
-				return Adverts.query();
+				return Adverts.query().$promise;
 			},
 			getAdvert: function(num) {
-				return Adverts.get({id: num});
+				return Adverts.get({id: num}).$promise;
 			},
 			updateAdvert: function(item) {
-				return Adverts.update({id: item.id}, item);
+				return Adverts.update({id: item.id}, item).$promise;
 			},
 			addAdvert: function(item) {
-				return Adverts.save(item);
+				return Adverts.save(item).$promise;
 			},
 			deleteAdvert: function(index) {
-				return Adverts.delete({id: index});
+				return Adverts.delete({id: index}).$promise;
 			}
 		};
 	}];
