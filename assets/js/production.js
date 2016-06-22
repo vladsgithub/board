@@ -36225,21 +36225,21 @@ angular.module('ngResource', ['ng']).
 			$stateProvider
 				.state('home', {
 					url: '/',
-					templateUrl: 'templates/home.html'
+					templateUrl: 'app/components/home/home.html'
 				})
 				.state('adverts', {
 					url: '/adverts',
-					templateUrl: 'templates/list.html',
-					controller: 'mainCtrl'
+					templateUrl: 'app/components/list/list.html',
+					controller: 'listCtrl'
 				})
 				.state('advert', {
 					url: '/adverts/:number',
-					templateUrl: 'templates/advert.html',
+					templateUrl: 'app/components/advert/advert.html',
 					controller: 'advertCtrl'
 				})
 				.state('newAdvert', {
 					url: '/new-advert',
-					templateUrl: 'templates/advert.html',
+					templateUrl: 'app/components/advert/advert.html',
 					controller: 'newAdvertCtrl'
 				})
 				.state('404', {
@@ -36254,52 +36254,7 @@ angular.module('ngResource', ['ng']).
 	module.config(mainConfig);
 
 }(angular.module("app")));
-//Controllers
-
 (function (module) {
-
-	var mainCtrl = ['$rootScope', '$scope', '$http', 'advertService',
-		function ($rootScope, $scope, $http, advertService) {
-			$scope.resultQty = [5, 10, 50, 100];
-			$scope.qtyOnPage = $scope.resultQty[0];
-
-			$scope.choosePage = function (pageNumber) {
-				pageNumber = pageNumber || 0;
-				$scope.activeItem = pageNumber;
-				$scope.startNum = $scope.qtyOnPage * pageNumber;
-				$scope.endNum = $scope.qtyOnPage * (1 + pageNumber);
-			};
-
-			$scope.updatePagination = function (newValue) {
-				if (newValue !== undefined) {
-					$scope.pageNumArray = [];
-					var arrLength = Math.ceil(newValue.length / $scope.qtyOnPage);
-					for (var i = 0; i < arrLength; i++) {
-						$scope.pageNumArray.push(i * $scope.qtyOnPage);
-					}
-				}
-			};
-
-			$scope.getAdverts = function () {
-				advertService.queryAdverts().then(function (response) {
-					$scope.adverts = response;
-					$scope.choosePage();
-					$scope.updatePagination($scope.results);
-				});
-			};
-
-			$scope.deleteItem = function (index) {
-				var question = confirm("Do you want to delete this advert? Are you sure?");
-
-				if (question) {
-					advertService.deleteAdvert(index).then(function (response) {
-						$scope.getAdverts();
-					});
-				}
-			};
-
-			$scope.$watch('results', $scope.updatePagination);
-		}];
 
 	var advertCtrl = ['$scope', '$stateParams', '$state', 'advertService',
 		function ($scope, $stateParams, $state, advertService) {
@@ -36350,64 +36305,10 @@ angular.module('ngResource', ['ng']).
 			};
 		}];
 
-	module.controller('mainCtrl', mainCtrl);
 	module.controller('advertCtrl', advertCtrl);
 	module.controller('newAdvertCtrl', newAdvertCtrl);
 
 }(angular.module("app")));
-//Directives
-
-(function (module) {
-
-	var pagination = function() {
-		return {
-			restrict: 'E',
-			templateUrl: 'templates/pagination.html',
-			link: function(scope, element, attrs) {
-				scope.activeItem = 0;
-
-				scope.selectPage = function(index) {
-					if (index < 0 || index >= scope.pageNumArray.length) return false;
-
-					scope.choosePage(index);
-				};
-			}
-		}
-	};
-
-	var filter = function() {
-		return {
-			restrict: 'E',
-			templateUrl: 'templates/filter.html',
-			link: function(scope, element, attrs) {
-				scope.choosePage();
-			}
-		}
-	};
-
-	var item = function() {
-		return {
-			restrict: 'A',
-			templateUrl: 'templates/item.html'
-			//template:
-			//'<div class="ad animated fadeIn">' +
-			//	'<a href type="button" class="btn-del" ng-click="deleteItem(advert.id)"><i class="icon-remove-circle"></i></a>' +
-			//	'<dl class="info"><dt>{{advert.type}}:</dt><dd>{{advert.title}}</dd></dl>' +
-			//	'<div class="pict-block">' +
-			//		'<p>{{advert.id}}</p>' +
-			//		'<a class="picture" ui-sref="advert({number: advert.id})"><img ng-src="{{advert.pict}}"></a>' +
-			//	'</div>' +
-			//'</div>'
-		}
-	};
-
-	module.directive('pagination', pagination);
-	module.directive('filter', filter);
-	module.directive('ngItem', item);
-
-}(angular.module('app')));
-//Services
-
 (function(module) {
 	var advertService = ['$resource', function($resource) {
 		var Adverts = $resource('/advertisements/:id', {
@@ -36440,3 +36341,112 @@ angular.module('ngResource', ['ng']).
 	module.factory("advertService", advertService);
 
 }(angular.module("app")));
+(function (module) {
+
+	var listCtrl = ['$rootScope', '$scope', '$http', 'listService', 'advertService',
+		function ($rootScope, $scope, $http, listService, advertService) {
+			$scope.resultQty = [5, 10, 50, 100];
+			$scope.qtyOnPage = $scope.resultQty[0];
+
+			$scope.choosePage = function (pageNumber) {
+				pageNumber = pageNumber || 0;
+				$scope.activeItem = pageNumber;
+				$scope.startNum = $scope.qtyOnPage * pageNumber;
+				$scope.endNum = $scope.qtyOnPage * (1 + pageNumber);
+			};
+
+			$scope.updatePagination = function (newValue) {
+				if (newValue !== undefined) {
+					$scope.pageNumArray = [];
+					var arrLength = Math.ceil(newValue.length / $scope.qtyOnPage);
+					for (var i = 0; i < arrLength; i++) {
+						$scope.pageNumArray.push(i * $scope.qtyOnPage);
+					}
+				}
+			};
+
+			$scope.getAdverts = function () {
+				listService.queryAdverts().then(function (response) {
+					$scope.adverts = response;
+					$scope.choosePage();
+					$scope.updatePagination($scope.results);
+				});
+			};
+
+			$scope.deleteItem = function (index) {
+				var question = confirm("Do you want to delete this advert? Are you sure?");
+
+				if (question) {
+					advertService.deleteAdvert(index).then(function (response) {
+						$scope.getAdverts();
+					});
+				}
+			};
+
+			$scope.$watch('results', $scope.updatePagination);
+		}];
+
+	module.controller('listCtrl', listCtrl);
+
+}(angular.module("app")));
+(function(module) {
+	var listService = ['$resource', function($resource) {
+		var Adverts = $resource('/advertisements');
+
+		return {
+			queryAdverts: function() {
+				return Adverts.query().$promise;
+			}
+		};
+	}];
+
+	module.factory("listService", listService);
+
+}(angular.module("app")));
+(function (module) {
+
+	var filter = function() {
+		return {
+			restrict: 'E',
+			templateUrl: 'app/shared/filter/filter.html',
+			link: function(scope, element, attrs) {
+				scope.choosePage();
+			}
+		}
+	};
+
+	module.directive('filter', filter);
+
+}(angular.module('app')));
+(function (module) {
+	var item = function() {
+		return {
+			restrict: 'A',
+			templateUrl: 'app/shared/item/item.html'
+		}
+	};
+
+	module.directive('ngItem', item);
+
+}(angular.module('app')));
+(function (module) {
+
+	var pagination = function() {
+		return {
+			restrict: 'E',
+			templateUrl: 'app/shared/pagination/pagination.html',
+			link: function(scope, element, attrs) {
+				scope.activeItem = 0;
+
+				scope.selectPage = function(index) {
+					if (index < 0 || index >= scope.pageNumArray.length) return false;
+
+					scope.choosePage(index);
+				};
+			}
+		}
+	};
+
+	module.directive('pagination', pagination);
+
+}(angular.module('app')));

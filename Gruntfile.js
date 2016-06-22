@@ -18,8 +18,9 @@ module.exports = function(grunt) {
 					'node_modules/angular/angular.js',
 					'node_modules/angular-ui-router/release/angular-ui-router.js',
 					'node_modules/angular-resource/angular-resource.js',
-					'ui/js/*.js',
-					'ui/js/*/*.js'
+					'app/*.js',
+					'app/**/*.js',
+					'!app/**/*Test.js'
 				],
 				dest: 'assets/js/production.js'
 			}
