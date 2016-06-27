@@ -2,7 +2,7 @@
 	var item = function() {
 		return {
 			restrict: 'A',
-			templateUrl: 'app/shared/item/item.html'
+			templateUrl: 'app/common/item/template/itemTemplate.html'
 		}
 	};
 

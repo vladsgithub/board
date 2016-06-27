@@ -36225,21 +36225,21 @@ angular.module('ngResource', ['ng']).
 			$stateProvider
 				.state('home', {
 					url: '/',
-					templateUrl: 'app/components/home/home.html'
+					templateUrl: 'app/pages/home/template/homeTemplate.html'
 				})
 				.state('adverts', {
 					url: '/adverts',
-					templateUrl: 'app/components/list/list.html',
+					templateUrl: 'app/pages/list/template/listTemplate.html',
 					controller: 'listCtrl'
 				})
 				.state('advert', {
 					url: '/adverts/:number',
-					templateUrl: 'app/components/advert/advert.html',
+					templateUrl: 'app/pages/advert/template/advertTemplate.html',
 					controller: 'advertCtrl'
 				})
 				.state('newAdvert', {
 					url: '/new-advert',
-					templateUrl: 'app/components/advert/advert.html',
+					templateUrl: 'app/pages/advert/template/advertTemplate.html',
 					controller: 'newAdvertCtrl'
 				})
 				.state('404', {
@@ -36254,6 +36254,53 @@ angular.module('ngResource', ['ng']).
 	module.config(mainConfig);
 
 }(angular.module("app")));
+(function (module) {
+
+	var filter = function() {
+		return {
+			restrict: 'E',
+			templateUrl: 'app/common/filter/template/filterTemplate.html',
+			link: function(scope, element, attrs) {
+				scope.choosePage();
+			}
+		}
+	};
+
+	module.directive('filter', filter);
+
+}(angular.module('app')));
+(function (module) {
+	var item = function() {
+		return {
+			restrict: 'A',
+			templateUrl: 'app/common/item/template/itemTemplate.html'
+		}
+	};
+
+	module.directive('ngItem', item);
+
+}(angular.module('app')));
+(function (module) {
+
+	var pagination = function() {
+		return {
+			restrict: 'E',
+			templateUrl: 'app/common/pagination/template/paginationTemplate.html',
+			link: function(scope, element, attrs) {
+				scope.activeItem = 0;
+
+				scope.selectPage = function(index) {
+					if (index < 0 || index >= scope.pageNumArray.length) return false;
+
+					scope.choosePage(index);
+				};
+			}
+		}
+	};
+
+	module.directive('pagination', pagination);
+
+}(angular.module('app')));
 (function (module) {
 
 	var advertCtrl = ['$scope', '$stateParams', '$state', 'advertService',
@@ -36403,50 +36450,3 @@ angular.module('ngResource', ['ng']).
 	module.factory("listService", listService);
 
 }(angular.module("app")));
-(function (module) {
-
-	var filter = function() {
-		return {
-			restrict: 'E',
-			templateUrl: 'app/shared/filter/filter.html',
-			link: function(scope, element, attrs) {
-				scope.choosePage();
-			}
-		}
-	};
-
-	module.directive('filter', filter);
-
-}(angular.module('app')));
-(function (module) {
-	var item = function() {
-		return {
-			restrict: 'A',
-			templateUrl: 'app/shared/item/item.html'
-		}
-	};
-
-	module.directive('ngItem', item);
-
-}(angular.module('app')));
-(function (module) {
-
-	var pagination = function() {
-		return {
-			restrict: 'E',
-			templateUrl: 'app/shared/pagination/pagination.html',
-			link: function(scope, element, attrs) {
-				scope.activeItem = 0;
-
-				scope.selectPage = function(index) {
-					if (index < 0 || index >= scope.pageNumArray.length) return false;
-
-					scope.choosePage(index);
-				};
-			}
-		}
-	};
-
-	module.directive('pagination', pagination);
-
-}(angular.module('app')));

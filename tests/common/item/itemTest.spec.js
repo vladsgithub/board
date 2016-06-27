@@ -3,7 +3,7 @@ describe('app', function() {
 
 	beforeEach(module('app'));
 
-	beforeEach(module('app/shared/item/item.html'));
+	beforeEach(module('app/common/item/template/itemTemplate.html'));
 
 	describe('item directive', function() {
 		var compile,
@@ -16,14 +16,13 @@ describe('app', function() {
 			scope = $rootScope.$new();
 		}));
 
-		it('Replaces the element with the appropriate content', function() {
+		it('replaces the element with the appropriate content', function() {
 			scope.advert = {
 				"id": 123456789,
 				"type": "purchase",
 				"title": "LG G2",
 				"pict": "..\/ui\/pic\/lgg2.jpg"
 			};
-
 			element = compile('<li ng-item></li>')(scope);
 			scope.$digest();
 

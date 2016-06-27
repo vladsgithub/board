@@ -3,7 +3,7 @@
 	var filter = function() {
 		return {
 			restrict: 'E',
-			templateUrl: 'app/shared/filter/filter.html',
+			templateUrl: 'app/common/filter/template/filterTemplate.html',
 			link: function(scope, element, attrs) {
 				scope.choosePage();
 			}

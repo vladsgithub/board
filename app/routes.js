@@ -8,21 +8,21 @@
 			$stateProvider
 				.state('home', {
 					url: '/',
-					templateUrl: 'app/components/home/home.html'
+					templateUrl: 'app/pages/home/template/homeTemplate.html'
 				})
 				.state('adverts', {
 					url: '/adverts',
-					templateUrl: 'app/components/list/list.html',
+					templateUrl: 'app/pages/list/template/listTemplate.html',
 					controller: 'listCtrl'
 				})
 				.state('advert', {
 					url: '/adverts/:number',
-					templateUrl: 'app/components/advert/advert.html',
+					templateUrl: 'app/pages/advert/template/advertTemplate.html',
 					controller: 'advertCtrl'
 				})
 				.state('newAdvert', {
 					url: '/new-advert',
-					templateUrl: 'app/components/advert/advert.html',
+					templateUrl: 'app/pages/advert/template/advertTemplate.html',
 					controller: 'newAdvertCtrl'
 				})
 				.state('404', {

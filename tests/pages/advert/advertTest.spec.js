@@ -26,7 +26,7 @@ describe('app', function() {
 			}];
 
 			beforeEach(inject(function ($httpBackend) {
-				$httpBackend.whenGET('app/components/home/home.html').respond(200);
+				$httpBackend.whenGET('app/pages/home/template/homeTemplate.html').respond(200);
 				$httpBackend.whenGET('/advertisements').respond(200);
 				$httpBackend.whenGET('/advertisements/1').respond(200, data[1]);
 			}));

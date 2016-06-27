@@ -3,7 +3,7 @@
 	var pagination = function() {
 		return {
 			restrict: 'E',
-			templateUrl: 'app/shared/pagination/pagination.html',
+			templateUrl: 'app/common/pagination/template/paginationTemplate.html',
 			link: function(scope, element, attrs) {
 				scope.activeItem = 0;
 
