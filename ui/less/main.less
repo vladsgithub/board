@@ -21,6 +21,10 @@ h1 {
 .flex-cont {
   .flex-container(row, nowrap, space-between);
 }
+.validated .ng-invalid,
+.validated .invalid {
+  border-color: @red !important;
+}
 
 html {
   height: 100%;
@@ -289,6 +293,7 @@ pagination {
     img {
       vertical-align: middle;
       border-radius: 15px;
+      line-height: 0;
     }
   }
   .info-block {

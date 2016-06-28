@@ -3,8 +3,8 @@ module.exports = function(config) {
 		basePath: '',
 		autoWatch: true,
 		//singleRun: true,
-		browsers: ['Chrome'],
-		//browsers: ['PhantomJS'],
+		//browsers: ['Chrome'],
+		browsers: ['PhantomJS'],
 		files: [
 			'node_modules/angular/angular.js',
 			'node_modules/angular-ui-router/release/angular-ui-router.js',
@@ -15,8 +15,6 @@ module.exports = function(config) {
 			'app/**/*.html',
 
 			'tests/**/*.js'
-
-			//'assets/js/production.js',
 		],
 		preprocessors: {
 			'app/common/**/*.html': 'ng-html2js',
@@ -29,8 +27,8 @@ module.exports = function(config) {
 			dir : 'coverage/'
 		},
 		plugins : [
-			//'karma-phantomjs-launcher',
-			'karma-chrome-launcher',
+			'karma-phantomjs-launcher',
+			//'karma-chrome-launcher',
 			'karma-jasmine',
 			'karma-ng-html2js-preprocessor',
 			'karma-coverage'

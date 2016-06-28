@@ -1,13 +1,15 @@
-<form name="advertForm" class="advert-form" ng-submit="submit()">
-	<h1>{{title}}</h1>
+<form name="advertForm" class="advert-form" ng-class="{'validated': validated}" ng-submit="submit()" novalidate>
+	<h1>{{advert.title}}</h1>
+
 	<div class="advert">
 		<div class="pict-block">
 			<div class="id">{{advert.id}}</div>
 			<div class="picture">
-				<img ng-src="{{advert.pict}}" title="{{advert.title}}">
+				<img ng-src="{{advert.pict}}" title="{{advert.title}}" imageonload/>
 			</div>
 			<p>
-				<input type="text" ng-model="advert.pict" placeholder="URL address of picture"/>
+				<input name="picture" type="text" ng-model="advert.pict" ng-class="{'invalid': !advert.isPictLoaded}"
+					   placeholder="URL address of picture" required/>
 			</p>
 		</div>
 
@@ -15,7 +17,7 @@
 			<li>
 				<label>
 					<span>Type of advert:</span>
-					<select ng-model="advert.type" required>
+					<select name="type" ng-model="advert.type" required>
 						<option>sale</option>
 						<option>purchase</option>
 						<option>exchange</option>
@@ -25,7 +27,7 @@
 			<li>
 				<label>
 					<span>Title of advert:</span>
-					<input type="text" ng-model="advert.title" required/>
+					<input name="title" type="text" ng-model="advert.title" required/>
 				</label>
 			</li>
 			<li>

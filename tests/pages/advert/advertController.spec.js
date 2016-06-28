@@ -44,4 +44,52 @@ describe('app', function() {
 			}));
 		});
 	});
+
+	describe('newAdvertCtrl', function() {
+		beforeEach(inject(function($rootScope, $controller) {
+			scope = $rootScope.$new();
+			controller = $controller('newAdvertCtrl', {$scope: scope});
+		}));
+
+		describe('using methods of advertService', function () {
+			var advert = {
+				"id": 0,
+				"type": "sale",
+				"title": "LG G1",
+				"desc": "LG G1 is a good device!",
+				"pict": "..\/ui\/pic\/lgg1.jpg"
+			};
+
+			beforeEach(inject(function ($httpBackend) {
+				$httpBackend.whenGET('app/pages/home/template/homeTemplate.html').respond(200);
+				$httpBackend.expectPOST('/advertisements/0').respond(200, advert);
+			}));
+
+			it('should save an advert', inject(function (advertService, $httpBackend) {
+				advertService.addAdvert(advert).then(function(response) {
+					scope.advert = response;
+				});
+				$httpBackend.flush();
+
+				expect(scope.advert.id).toBe(advert.id);
+				expect(scope.advert.desc).toBe(advert.desc);
+			}));
+
+			it('returns error message', function() {
+				scope.advertForm = {
+					type: {
+						$modelValue: 'exchange',
+						$invalid: true
+					},
+					title: {},
+					picture: {}
+				};
+
+				spyOn(window, 'alert');
+				scope.submit();
+
+				expect(window.alert).toHaveBeenCalledWith('- Please choose type of the advert;\n');
+			});
+		});
+	});
 });

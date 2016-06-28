@@ -1300,6 +1300,10 @@ h1 {
   -ms-justify-content: space-between;
   justify-content: space-between;
 }
+.validated .ng-invalid,
+.validated .invalid {
+  border-color: #ff0000 !important;
+}
 html {
   height: 100%;
   min-width: 320px;
@@ -1583,6 +1587,7 @@ pagination .inactive a {
 .advert .picture img {
   vertical-align: middle;
   border-radius: 15px;
+  line-height: 0;
 }
 .advert .info-block li {
   margin-bottom: 10px;
